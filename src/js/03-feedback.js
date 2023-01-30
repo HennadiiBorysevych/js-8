@@ -24,4 +24,6 @@ formSubmit.addEventListener('submit', event => {
   console.log({ email, message });
 
   localStorage.removeItem('feedback-form-state');
+  inPut.value = '';
+  textArea.value = '';
 });

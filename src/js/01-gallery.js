@@ -1,4 +1,3 @@
-// Add imports above this line
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { galleryItems } from '../js/gallery-items';
@@ -33,12 +32,10 @@ function handlePhotoOriginal(e) {
     return;
   }
 
-  const gallery = new SimpleLightbox(
-    `
-  .gallery a
-`,
-    { captionsData: 'alt', captionDelay: '250' }
-  );
+  const gallery = new SimpleLightbox(`.gallery a`, {
+    captionsData: 'alt',
+    captionDelay: '250',
+  });
   gallery.on('show.simplelightbox');
   e.preventDefault();
   document.addEventListener('keydown', closeModalOnEscape);
@@ -50,6 +47,3 @@ function handlePhotoOriginal(e) {
     }
   }
 }
-// Change code below this line
-
-console.log(galleryItems);

@@ -6,7 +6,8 @@ const videoFrame = document.querySelector('#vimeo-player');
 const player = new Vimeo.Player(videoFrame);
 
 const saveCurrentTime = function (time) {
-  localStorage.setItem(CURRENT_TIME, JSON.stringify(time));
+  let stopedTime = { seconds: Math.floor(time.seconds) };
+  localStorage.setItem(CURRENT_TIME, JSON.stringify(stopedTime));
 };
 const throttledSaveCurrentTime = throttle(saveCurrentTime, 1000);
 
