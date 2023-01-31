@@ -16,14 +16,20 @@ function handelStorageSection(event) {
 
 formSubmit.addEventListener('input', throttle(handelStorageSection, 500));
 
+const feedbackFormInfo = localStorage.getItem(FEEDBACK_STORAGE);
+const feedbackFormInfoParsed = JSON.parse(feedbackFormInfo);
+
 formSubmit.addEventListener('submit', event => {
   event.preventDefault();
-  let email = inPut.value;
-  let message = textArea.value;
+  let email = feedbackFormInfoParsed.email;
+  let message = feedbackFormInfoParsed.message;
 
   console.log({ email, message });
-
-  localStorage.removeItem('feedback-form-state');
   inPut.value = '';
   textArea.value = '';
 });
+
+inPut.value = feedbackFormInfoParsed.email;
+textArea.value = feedbackFormInfoParsed.message;
+
+localStorage.removeItem('feedback-form-state');
