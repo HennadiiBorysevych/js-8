@@ -16,19 +16,22 @@ function handelStorageSection(event) {
 
 formSubmit.addEventListener('input', throttle(handelStorageSection, 500));
 
+formSubmit.addEventListener('submit', event => {
+  event.preventDefault();
+  if (!inPut.value || !textArea.value) {
+    return alert('fill up all fields');
+  }
+  handelStorageSection();
+  console.log({ email: inPut.value, message: textArea.value });
+  event.currentTarget.reset();
+});
+
 const feedbackFormInfo = localStorage.getItem(FEEDBACK_STORAGE);
 const feedbackFormInfoParsed = JSON.parse(feedbackFormInfo);
 
-formSubmit.addEventListener('submit', event => {
-  event.preventDefault();
-  let email = feedbackFormInfoParsed.email;
-  let message = feedbackFormInfoParsed.message;
-
-  console.log({ email, message });
-  inPut.value = '';
-  textArea.value = '';
-});
-
+if (!feedbackFormInfoParsed) {
+  return;
+}
 inPut.value = feedbackFormInfoParsed.email;
 textArea.value = feedbackFormInfoParsed.message;
 
